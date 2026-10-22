@@ -1,0 +1,2 @@
+[project.scripts]
+ground-station = "ground_station.main:main"
