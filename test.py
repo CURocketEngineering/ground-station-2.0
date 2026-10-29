@@ -17,7 +17,7 @@ if source.connect():
                 break
             readings.append(reading)
 
-        columns = ["TIMESTAMP", "ACCELEROMETER_Z", "GYROSCOPE_Z", "ALTITUDE"]
+        columns = ["TIMESTAMP", "ACCELEROMETER_X", "ACCELEROMETER_Y", "ACCELEROMETER_Z"]
 
         print(tabulate(
             [{key: row[key] for key in columns} for row in readings],
