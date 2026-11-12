@@ -37,7 +37,7 @@ class CSVDataSource(DataSource):
         self.last_error = None
         self.disconnect()
 
-    def connect(self, file_path: str | Path | None = None) -> bool:
+    def connect(self, file_path: str | Path | None = None, **kwargs) -> bool:
         self.disconnect()
         self.last_error = None
         if file_path is not None:
