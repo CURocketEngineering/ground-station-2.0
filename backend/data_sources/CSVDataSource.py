@@ -7,6 +7,7 @@ import pandas as pd
 
 from .DataSource import DataSource
 
+
 class CSVDataSource(DataSource):
     """Load once, then poll rows in timestamp order without dropping readings.
 
@@ -15,10 +16,6 @@ class CSVDataSource(DataSource):
     A connected source stays connected at EOF; finished distinguishes EOF
     from waiting for the next timestamp. reconnect/restart replays from start.
     """
-    class CSVDataSource(DataSource):
-        """..."""
-
-        df: pd.DataFrame | None = None
 
     def __init__(self, file_path: str | Path | None = None, *,
                  timestamp_column: str | None = None, timestamp_unit: str = "ms",
@@ -40,10 +37,7 @@ class CSVDataSource(DataSource):
         self.last_error = None
         self.disconnect()
 
-    # need to correct this error, stating that it's an incompatible override
-    # currently forcing it to accept kwargs to fix this error, 
-    # but not sure if that is the best way
-    def connect(self, file_path: str | Path | None = None, **kwargs) -> bool:
+    def connect(self, file_path: str | Path | None = None) -> bool:
         self.disconnect()
         self.last_error = None
         if file_path is not None:
@@ -89,7 +83,7 @@ class CSVDataSource(DataSource):
 
     def disconnect(self) -> None:
         self.connected = False
-        self.df: pd.DataFrame | None = None
+        self.df = None
         self.current_index = 0
         self.skipped_rows = 0
         self.launch_index = None
@@ -122,12 +116,7 @@ class CSVDataSource(DataSource):
         if self.realtime and (now - self._started_at) * 1000 * self.speed < due_ms:
             return None
         result = {}
-        # columns is coming up as an error, not a known attribute of "none"
-        # used a fix from claude for this, we can change it if
-        # we decide it's a bad fix later, but it works for now
-        df = self.df
-        assert df is not None
-        for key, value in zip(df.columns, next(self._rows)):
+        for key, value in zip(self.df.columns, next(self._rows)):
             if key == "TIMESTAMP":
                 result[key] = format(float(value), ".15g")
                 continue
