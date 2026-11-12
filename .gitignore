@@ -18,6 +18,7 @@ Thumbs.db
 
 # Generated logs
 *.log
+*.csv
 
 # Data files
 data/

@@ -1,0 +1,137 @@
+data_names:
+  - type: single
+    name: ACCELEROMETER_X
+    id: 0
+    unit: "m/s²"
+  - type: single
+    name: ACCELEROMETER_Y
+    id: 1
+    unit: "m/s²"
+  - type: single
+    name: ACCELEROMETER_Z
+    id: 2
+    unit: "m/s²"
+  - type: group
+    name: ACCELEROMETER
+    id: 102
+    unit: "m/s²"
+    data: [0, 1, 2]
+  - type: single
+    name: GYROSCOPE_X
+    id: 3
+    unit: "°/s"
+  - type: single
+    name: GYROSCOPE_Y
+    id: 4
+    unit: "°/s"
+  - type: single
+    name: GYROSCOPE_Z
+    id: 5
+    unit: "°/s"
+  - type: group
+    name: GYROSCOPE
+    id: 105
+    unit: "°/s"
+    data: [3, 4, 5]
+  - type: single
+    name: TEMPERATURE
+    id: 6
+    unit: "°C"
+  - type: single
+    name: PRESSURE
+    id: 7
+    unit: "hPa"
+  - type: single
+    name: ALTITUDE
+    id: 8
+    unit: "m"
+  - type: single
+    name: MAGNETOMETER_X
+    id: 9
+    unit: "µT"
+  - type: single
+    name: MAGNETOMETER_Y
+    id: 10
+    unit: "µT"
+  - type: single
+    name: MAGNETOMETER_Z
+    id: 11
+    unit: "µT"
+  - type: group
+    name: MAGNETOMETER
+    id: 111
+    unit: "µT"
+    data: [9, 10, 11]
+  - type: single
+    name: MEDIAN_ACCELERATION_SQUARED
+    id: 12
+    unit: "m²/s²"
+  - type: single
+    name: CYCLE_RATE
+    id: 13
+    unit: "Hz"
+  - type: single
+    name: TIMESTAMP
+    id: 14
+    unit: "s"
+  - type: single
+    name: STATE_CHANGE
+    id: 15
+    unit: "enum"
+  - type: single
+    name: FLIGHT_ID
+    id: 16
+    unit: "id"
+  - type: single
+    name: EST_APOGEE
+    id: 17
+    unit: "m"
+  - type: single
+    name: EST_VERTICAL_VELOCITY
+    id: 18
+    unit: "m/s"
+  - type: single
+    name: EST_ALTITUDE
+    id: 19
+    unit: "m"
+  - type: single
+    name: BATT
+    id: 20
+    unit: "V"
+  - type: single
+    name: FIN_DEPLOYMENT_AMOUNT
+    id: 21
+    unit: "°"
+  - type: single
+    name: TIME_TO_APOGEE
+    id: 22
+    unit: "s"
+  - type: single
+    name: CURRENT_STATE
+    id: 23
+    unit: "enum"
+  - type: single
+    name: NUM_PACKETS_SENT
+    id: 24
+    unit: "packets"
+  - type: single
+    name: PITCH
+    id: 25
+    unit: "°"
+  - type: single
+    name: ROLL
+    id: 26
+    unit: "°"
+  - type: single
+    name: YAW
+    id: 27
+    unit: "°"
+  - type: group
+    name: ORIENTATION
+    id: 120
+    unit: "°"
+    data: [25, 26, 27]
+  - type: single
+    name: PROBE_TEMPERATURE
+    unit: "°C"
+    id: 28
