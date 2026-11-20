@@ -159,13 +159,12 @@ class incoming_data():
 
     def test2(self):
         try:
+            R = Data.Radio()
+            R.connect()
             while True:
-                R = Data.Radio("/dev/tty.usbserial-BG00EAJ4")
-                R.connect()
-                for i in range(1, 800):
-                    self.update_data(R)
-                    self.print_data()
-                R.disconnect()
+                self.update_data(R)
+                self.print_data()
+
         except:
             print("radio has stopped")
             R.disconnect()

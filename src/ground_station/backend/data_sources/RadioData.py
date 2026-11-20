@@ -1,6 +1,7 @@
 import serial
 import struct
 import yaml
+import time
 
 
 class Radio:
@@ -119,3 +120,54 @@ class Radio:
     def get_data(self):
         self.data()
         return self.decode_raw()
+
+# might be able to get rid of streaming variable but might be needed for gui so it doesnt freak out when incoming data stops
+class Sending_commands(Radio):
+    def __init__(self):
+        self.streaming = True
+
+    def toggle_streaming(self):
+        if self.streaming:
+            self.streaming = False
+        else:
+            self.streaming = True
+
+    def enter_command_mode():
+        return True
+
+    #when a command is sent incoming data stops
+    def send_command(self, command: str) -> bool:
+        if not self.connected or self.serial is None:
+            print("Radio is not connected.")
+            return False
+
+        try:
+            payload = command + "\n"
+            self.serial.write(payload.encode("utf-8"))
+            self.serial.flush()
+            return True
+
+        except (serial.SerialException, OSError) as exc:
+            print(f"Failed to send command '{command}': {exc}")
+            return False
+        
+    def send_multiple_commands(self, commands: list):
+        for command in commands:
+            if not self.send_command(command):
+                return False
+            time.sleep(0.3)
+        return True
+
+    def enter_command_mode(self):
+        self.streaming = False
+        if self.send_command("ccc"):
+            print("entered command mode")
+            return True
+        else:
+            return False
+
+    def exit_commad_mode(self):
+        self.streaming = True
+        print("wait for MARTHA to resume sending data (10 seconds)")
+        return True
+

@@ -27,5 +27,5 @@ def test_with_real_radio():
     D = incoming_data()
     D.test2()
 
-test_with_real_radio()
-#test_radio_with_fake()
+#test_with_real_radio()
+test_radio_with_fake()
